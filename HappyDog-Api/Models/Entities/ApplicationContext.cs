@@ -18,6 +18,22 @@ namespace HappyDog_Api.Models.Entities
                 .HasOne(ui => ui.UserAdditionalInfo)
                 .WithOne(u => u.User)
                 .HasForeignKey<UserAdditionalInfo>();
+
+            builder.Entity<DogInfo>()
+                .HasOne(ui => ui.BaseDogInfo)
+                .WithOne(u => u.DogInfo)
+                .HasForeignKey<BaseDogInfo>();
+
+            builder.Entity<DogInfo>()
+             .HasOne(ui => ui.DogCharacteristic)
+             .WithOne(u => u.DogInfo)
+             .HasForeignKey<DogCharacteristic>();
+
+            builder.Entity<DogInfo>()
+             .HasOne(ui => ui.DogSize)
+             .WithOne(u => u.DogInfo)
+             .HasForeignKey<DogSize>();
+
             base.OnModelCreating(builder);
         }
 

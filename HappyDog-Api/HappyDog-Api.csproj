@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="wwwroot\Images\" />
+    <Folder Include="wwwroot\InfoImages\" />
   </ItemGroup>
 
   <ItemGroup>

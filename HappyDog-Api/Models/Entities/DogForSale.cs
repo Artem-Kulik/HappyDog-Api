@@ -13,7 +13,9 @@ namespace HappyDog_Api.Models.Entities
         public string Age { get; set; }
         public int Price { get; set; }
         public string Info { get; set; }
+        public int UserAdditionalInfoId { get; set; }
 
+        public virtual UserAdditionalInfo User { get; set; }
         public ICollection<Photo> Photos { get; set; }
     }
 }
