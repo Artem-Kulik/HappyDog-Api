@@ -6,8 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\InfoImages\**" />
+    <Content Remove="wwwroot\InfoImages\**" />
+    <EmbeddedResource Remove="wwwroot\InfoImages\**" />
+    <None Remove="wwwroot\InfoImages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\Images\" />
-    <Folder Include="wwwroot\InfoImages\" />
   </ItemGroup>
 
   <ItemGroup>

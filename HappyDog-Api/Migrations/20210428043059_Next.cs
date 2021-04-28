@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HappyDog_Api.Migrations
 {
-    public partial class FisrtAdding : Migration
+    public partial class Next : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,6 +47,23 @@ namespace HappyDog_Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BreedGames",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BreedImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstAnswer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecondAnswer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ThirdAnswer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RightAnswer = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BreedGames", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DogInfos",
                 columns: table => new
                 {
@@ -56,9 +73,21 @@ namespace HappyDog_Api.Migrations
                     MainDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BigPhoto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BigDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BaseDogInfoId = table.Column<int>(type: "int", nullable: false),
-                    DogSizeId = table.Column<int>(type: "int", nullable: false),
-                    DogCharacteristicId = table.Column<int>(type: "int", nullable: false)
+                    Breed = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Weight = table.Column<int>(type: "int", nullable: false),
+                    Height = table.Column<int>(type: "int", nullable: false),
+                    LifeSpan = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Aggressiveness = table.Column<int>(type: "int", nullable: false),
+                    Molting = table.Column<int>(type: "int", nullable: false),
+                    Intelligence = table.Column<int>(type: "int", nullable: false),
+                    Activity = table.Column<int>(type: "int", nullable: false),
+                    MaintenanceCost = table.Column<int>(type: "int", nullable: false),
+                    Noise = table.Column<int>(type: "int", nullable: false),
+                    Training = table.Column<int>(type: "int", nullable: false),
+                    Health = table.Column<int>(type: "int", nullable: false),
+                    ExcellentQuality = table.Column<int>(type: "int", nullable: false),
+                    DogSizeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -192,30 +221,6 @@ namespace HappyDog_Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BaseDogInfos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Breed = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Weight = table.Column<int>(type: "int", nullable: false),
-                    Height = table.Column<int>(type: "int", nullable: false),
-                    LifeSpan = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DogInfoId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BaseDogInfos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BaseDogInfos_DogInfos_DogInfoId",
-                        column: x => x.DogInfoId,
-                        principalTable: "DogInfos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "BreedPhotos",
                 columns: table => new
                 {
@@ -229,34 +234,6 @@ namespace HappyDog_Api.Migrations
                     table.PrimaryKey("PK_BreedPhotos", x => x.Id);
                     table.ForeignKey(
                         name: "FK_BreedPhotos_DogInfos_DogInfoId",
-                        column: x => x.DogInfoId,
-                        principalTable: "DogInfos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DogCharacteristics",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Aggressiveness = table.Column<int>(type: "int", nullable: false),
-                    Molting = table.Column<int>(type: "int", nullable: false),
-                    Intelligence = table.Column<int>(type: "int", nullable: false),
-                    Activity = table.Column<int>(type: "int", nullable: false),
-                    MaintenanceCost = table.Column<int>(type: "int", nullable: false),
-                    Noise = table.Column<int>(type: "int", nullable: false),
-                    Training = table.Column<int>(type: "int", nullable: false),
-                    Health = table.Column<int>(type: "int", nullable: false),
-                    ExcellentQuality = table.Column<int>(type: "int", nullable: false),
-                    DogInfoId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DogCharacteristics", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DogCharacteristics_DogInfos_DogInfoId",
                         column: x => x.DogInfoId,
                         principalTable: "DogInfos",
                         principalColumn: "Id",
@@ -388,21 +365,9 @@ namespace HappyDog_Api.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BaseDogInfos_DogInfoId",
-                table: "BaseDogInfos",
-                column: "DogInfoId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BreedPhotos_DogInfoId",
                 table: "BreedPhotos",
                 column: "DogInfoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DogCharacteristics_DogInfoId",
-                table: "DogCharacteristics",
-                column: "DogInfoId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_DogForSales_UserId",
@@ -444,13 +409,10 @@ namespace HappyDog_Api.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "BaseDogInfos");
+                name: "BreedGames");
 
             migrationBuilder.DropTable(
                 name: "BreedPhotos");
-
-            migrationBuilder.DropTable(
-                name: "DogCharacteristics");
 
             migrationBuilder.DropTable(
                 name: "DogSizes");

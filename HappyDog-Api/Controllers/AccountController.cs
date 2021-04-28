@@ -53,7 +53,7 @@ namespace HappyDog_Api.Controllers
             {
                 Id = user.Id,
                 Name = model.Name,
-                Photo = model.Photo,
+                Photo = "/Images/default.jpg",
                 Coins = 0
             };
 

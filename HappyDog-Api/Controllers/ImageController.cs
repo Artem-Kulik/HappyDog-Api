@@ -19,7 +19,6 @@ namespace HappyDog_Api.Controllers
         private readonly IWebHostEnvironment _appEnvironment;
         private readonly ApplicationContext _context;
 
-
         public ImageController(IWebHostEnvironment appEnvironment,
             ApplicationContext context)
         {

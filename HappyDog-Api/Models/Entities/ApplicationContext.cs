@@ -17,17 +17,7 @@ namespace HappyDog_Api.Models.Entities
             builder.Entity<User>()
                 .HasOne(ui => ui.UserAdditionalInfo)
                 .WithOne(u => u.User)
-                .HasForeignKey<UserAdditionalInfo>();
-
-            builder.Entity<DogInfo>()
-                .HasOne(ui => ui.BaseDogInfo)
-                .WithOne(u => u.DogInfo)
-                .HasForeignKey<BaseDogInfo>();
-
-            builder.Entity<DogInfo>()
-             .HasOne(ui => ui.DogCharacteristic)
-             .WithOne(u => u.DogInfo)
-             .HasForeignKey<DogCharacteristic>();
+                .HasForeignKey<UserAdditionalInfo>();         
 
             builder.Entity<DogInfo>()
              .HasOne(ui => ui.DogSize)
@@ -37,13 +27,12 @@ namespace HappyDog_Api.Models.Entities
             base.OnModelCreating(builder);
         }
 
-        public virtual DbSet<BaseDogInfo> BaseDogInfos { get; set; }
         public virtual DbSet<BreedPhoto> BreedPhotos { get; set; }
-        public virtual DbSet<DogCharacteristic> DogCharacteristics { get; set; }
         public virtual DbSet<DogForSale> DogForSales { get; set; }
         public virtual DbSet<DogInfo> DogInfos { get; set; }
         public virtual DbSet<DogSize> DogSizes { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<Thesis> Theses { get; set; }
+        public virtual DbSet<BreedGame> BreedGames { get; set; }
     }
 }

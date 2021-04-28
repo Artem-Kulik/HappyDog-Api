@@ -29,6 +29,7 @@ namespace HappyDog_Api.Models.Configuration
             //order is IMPORTANT (for example, you first need to add categories and only then products that are category-dependent)
 
             this.AddConfig(new DogSizeInitializer());
+            this.AddConfig(new BreedGameInitializer());
         }
 
         public void AddConfig(ITypeInitializer typeInitializer)

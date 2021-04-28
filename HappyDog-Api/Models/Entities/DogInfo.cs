@@ -15,13 +15,25 @@ namespace HappyDog_Api.Models.Entities
         public string BigPhoto { get; set; }
         public string BigDescription { get; set; }
 
-        public int BaseDogInfoId { get; set; }
-        public int DogSizeId { get; set; }
-        public int DogCharacteristicId { get; set; }
+        public string Breed { get; set; }
+        public string Country { get; set; }
+        public int Weight { get; set; }
+        public int Height { get; set; }
+        public string LifeSpan { get; set; }
 
-        public virtual BaseDogInfo BaseDogInfo { get; set; }
+        public int Aggressiveness { get; set; }
+        public int Molting { get; set; }
+        public int Intelligence { get; set; }
+        public int Activity { get; set; }
+        public int MaintenanceCost { get; set; }
+        public int Noise { get; set; }
+        public int Training { get; set; }
+        public int Health { get; set; }
+        public int ExcellentQuality { get; set; }
+
+        public int DogSizeId { get; set; }
+
         public virtual DogSize DogSize { get; set; }
-        public virtual DogCharacteristic DogCharacteristic { get; set; }
         public ICollection<Thesis> Theses { get; set; }
         public ICollection<BreedPhoto> BreedPhotos { get; set; }
     }

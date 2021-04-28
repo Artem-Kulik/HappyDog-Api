@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HappyDog_Api.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210423131251_FisrtAdding")]
-    partial class FisrtAdding
+    [Migration("20210428043059_Next")]
+    partial class Next
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,37 +21,31 @@ namespace HappyDog_Api.Migrations
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("HappyDog_Api.Models.Entities.BaseDogInfo", b =>
+            modelBuilder.Entity("HappyDog_Api.Models.Entities.BreedGame", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Breed")
+                    b.Property<string>("BreedImage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Country")
+                    b.Property<string>("FirstAnswer")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DogInfoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Height")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LifeSpan")
+                    b.Property<string>("RightAnswer")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Weight")
-                        .HasColumnType("int");
+                    b.Property<string>("SecondAnswer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ThirdAnswer")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DogInfoId")
-                        .IsUnique();
-
-                    b.ToTable("BaseDogInfos");
+                    b.ToTable("BreedGames");
                 });
 
             modelBuilder.Entity("HappyDog_Api.Models.Entities.BreedPhoto", b =>
@@ -72,51 +66,6 @@ namespace HappyDog_Api.Migrations
                     b.HasIndex("DogInfoId");
 
                     b.ToTable("BreedPhotos");
-                });
-
-            modelBuilder.Entity("HappyDog_Api.Models.Entities.DogCharacteristic", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Activity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Aggressiveness")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DogInfoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExcellentQuality")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Health")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Intelligence")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MaintenanceCost")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Molting")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Noise")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Training")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DogInfoId")
-                        .IsUnique();
-
-                    b.ToTable("DogCharacteristics");
                 });
 
             modelBuilder.Entity("HappyDog_Api.Models.Entities.DogForSale", b =>
@@ -161,7 +110,10 @@ namespace HappyDog_Api.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BaseDogInfoId")
+                    b.Property<int>("Activity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Aggressiveness")
                         .HasColumnType("int");
 
                     b.Property<string>("BigDescription")
@@ -170,17 +122,50 @@ namespace HappyDog_Api.Migrations
                     b.Property<string>("BigPhoto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DogCharacteristicId")
-                        .HasColumnType("int");
+                    b.Property<string>("Breed")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DogSizeId")
                         .HasColumnType("int");
+
+                    b.Property<int>("ExcellentQuality")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Health")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Height")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Intelligence")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LifeSpan")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MainDescription")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MainPhoto")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MaintenanceCost")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Molting")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Noise")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Training")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Weight")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -463,33 +448,11 @@ namespace HappyDog_Api.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("HappyDog_Api.Models.Entities.BaseDogInfo", b =>
-                {
-                    b.HasOne("HappyDog_Api.Models.Entities.DogInfo", "DogInfo")
-                        .WithOne("BaseDogInfo")
-                        .HasForeignKey("HappyDog_Api.Models.Entities.BaseDogInfo", "DogInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DogInfo");
-                });
-
             modelBuilder.Entity("HappyDog_Api.Models.Entities.BreedPhoto", b =>
                 {
                     b.HasOne("HappyDog_Api.Models.Entities.DogInfo", "DogInfo")
                         .WithMany("BreedPhotos")
                         .HasForeignKey("DogInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DogInfo");
-                });
-
-            modelBuilder.Entity("HappyDog_Api.Models.Entities.DogCharacteristic", b =>
-                {
-                    b.HasOne("HappyDog_Api.Models.Entities.DogInfo", "DogInfo")
-                        .WithOne("DogCharacteristic")
-                        .HasForeignKey("HappyDog_Api.Models.Entities.DogCharacteristic", "DogInfoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -607,11 +570,7 @@ namespace HappyDog_Api.Migrations
 
             modelBuilder.Entity("HappyDog_Api.Models.Entities.DogInfo", b =>
                 {
-                    b.Navigation("BaseDogInfo");
-
                     b.Navigation("BreedPhotos");
-
-                    b.Navigation("DogCharacteristic");
 
                     b.Navigation("DogSize");
 
