@@ -38,14 +38,15 @@ namespace HappyDog_Api.Controllers
                 IsSuccessful = true
             };
         }
-
+        
         [HttpPost("register")]
         public async Task<ResultDto> Register([FromBody] RegisterDto model)
         {
             User user = new User()
             {
                 Email = model.Email,
-                UserName = model.Email
+                UserName = model.Email,
+                PhoneNumber = "+380000000000"
             };
             await _userManager.CreateAsync(user, model.Password);
 
@@ -54,7 +55,8 @@ namespace HappyDog_Api.Controllers
                 Id = user.Id,
                 Name = model.Name,
                 Photo = "/Images/default.jpg",
-                Coins = 0
+                Coins = 0,      
+                City = "City"
             };
 
             var result = _userManager.AddToRoleAsync(user, "Guest").Result;

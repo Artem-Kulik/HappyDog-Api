@@ -1,4 +1,5 @@
 ﻿using HappyDog_Api.Models.Configuration;
+using HappyDog_Api.Models.Configuration.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -18,7 +19,7 @@ namespace HappyDog_Api.Helpers
                 {
                     var initializer = scope
                         .ServiceProvider
-                        .GetRequiredService<EntityInitializer>();
+                        .GetRequiredService<IEntityInitializer>();
 
                     initializer.SeedData().Wait();
                 }

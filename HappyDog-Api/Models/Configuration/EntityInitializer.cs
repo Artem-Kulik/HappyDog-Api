@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HappyDog_Api.Models.Configuration
 {
-    public class EntityInitializer
+    public class EntityInitializer: IEntityInitializer
     {
         private readonly List<ITypeInitializer> typeInitializers;
         //private readonly UserManager<User> userManager;

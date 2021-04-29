@@ -38,14 +38,14 @@ namespace HappyDog_Api.Models.Configuration.Initializers
                 SecondAnswer = "English setter",
                 ThirdAnswer = "Weimaraner",
                 RightAnswer = "Dalmatian",
-                BreedImage = "/Images/Gdalmatinets.jpg.jpg"
+                BreedImage = "/Images/Gdalmatinets.jpg"
                 },
                 new BreedGame(){
                 FirstAnswer = "Drathhaar",
                 SecondAnswer = "Doberman",
                 ThirdAnswer = "German dog",
                 RightAnswer = "Doberman",
-                BreedImage = "/Images/Gdoberman.jpg.jpg"
+                BreedImage = "/Images/Gdoberman.jpg"
                 },
                 new BreedGame(){
                 FirstAnswer = "Chihuahua",

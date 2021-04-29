@@ -23,7 +23,7 @@ namespace HappyDog_Api.Controllers
 
         static List<int> exept = new List<int>();
         static int WonInARow = 1;
-        static int Prise = 100;
+        static int Prise = 10;
 
         [HttpGet]
         public ResultDto RandomBreed()
@@ -70,17 +70,18 @@ namespace HappyDog_Api.Controllers
         {
             if (result.res == true) {
                 WonInARow++;
-                Prise += 100;
+                _context.UserAdditionalInfo.Find(result.id).Coins += Prise;
+                Prise *= 2;
             }
-            if (result.res == false)
+            else
             {
                 WonInARow = 1;
-                //var c = _context.UserAdditionalInfo.Find(result.id).Coins;
-                //if (c - m >= 0) c -= Prise;
-                //else c = 0;
-                Prise = 100;
+                var c = _context.UserAdditionalInfo.Find(result.id).Coins;
+                if (c - (Prise / 2) >= 0) _context.UserAdditionalInfo.Find(result.id).Coins -= (Prise / 2);
+                else c = 0;
+                Prise = 10;
             }
-
+            _context.SaveChanges();
             return new ResultDto
             {
                 IsSuccessful = true

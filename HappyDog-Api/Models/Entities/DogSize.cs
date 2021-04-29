@@ -9,8 +9,7 @@ namespace HappyDog_Api.Models.Entities
     {
         public int Id { get; set; }
         public string Size { get; set; }
-        public int DogInfoId { get; set; }
 
-        public virtual DogInfo DogInfo { get; set; }
+        public virtual IEnumerable<DogInfo> DogInfos { get; set; }
     }
 }

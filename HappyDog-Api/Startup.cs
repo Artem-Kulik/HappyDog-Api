@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HappyDog_Api.Helpers;
+using HappyDog_Api.Models.Configuration;
+using HappyDog_Api.Models.Configuration.Interfaces;
 using HappyDog_Api.Models.Entities;
 using HappyDog_Api.Services.Inplementation;
 using HappyDog_Api.Services.Interfaces;
@@ -50,6 +52,8 @@ namespace HappyDog_Api
             });
 
             services.AddTransient<IJwtTokenService, JwtTokenService>();
+
+            services.AddScoped<IEntityInitializer, EntityInitializer>();
 
             var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetValue<string>("SecretPhrase")));
             services.AddAuthentication(options =>
@@ -101,7 +105,7 @@ namespace HappyDog_Api
                 endpoints.MapControllers();
             });
 
-            //SeederDatabase.SeedData(app.ApplicationServices, env, Configuration);
+            SeederDatabase.SeedData(app.ApplicationServices, env, Configuration);
         }
     }
 }

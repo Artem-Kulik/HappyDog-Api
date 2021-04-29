@@ -31,7 +31,7 @@ namespace HappyDog_Api.Models.Entities
         public int Health { get; set; }
         public int ExcellentQuality { get; set; }
 
-        public int DogSizeId { get; set; }
+        public int? DogSizeId { get; set; }
 
         public virtual DogSize DogSize { get; set; }
         public ICollection<Thesis> Theses { get; set; }
