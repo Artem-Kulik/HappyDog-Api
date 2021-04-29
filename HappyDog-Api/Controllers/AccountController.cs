@@ -64,7 +64,7 @@ namespace HappyDog_Api.Controllers
             await _context.SaveChangesAsync();
 
             return new ResultDto
-            {
+            { 
                 IsSuccessful = true
             };
         }
