@@ -26,11 +26,11 @@ namespace HappyDog_Api.Controllers
             _context = context;
         }
 
-        [HttpPost("UploadThingImage/(id)")]
-        public ResultDto UploadThingImage([FromRoute] string id, [FromForm(Name = "file")] IFormFile uploadedImage)
+        [HttpPost("AddMyDogImage/(id)")]
+        public ResultDto AddMyDogImage([FromRoute] string id, [FromForm(Name = "file")] IFormFile uploadedImage)
         {
             string fileName = Guid.NewGuid().ToString() + ".jpg";
-            string path = _appEnvironment.WebRootPath + @"\Images";
+            string path = _appEnvironment.WebRootPath + @"\SaleImages";
 
             if (!Directory.Exists(path))
             {
@@ -58,14 +58,20 @@ namespace HappyDog_Api.Controllers
                     if (saveImage != null)
                     {
                         saveImage.Save(path, ImageFormat.Jpeg);
-                       // var thing = _context.Things.Where(x => x.Id.ToString() == id).FirstOrDefault();
 
+                        Photo p = new Photo()
+                        {
+                            DogForSaleId = Convert.ToInt32(id),
+                            Path = path
+                        };
+
+                        // var thing = _context.Things.Where(x => x.Id.ToString() == id).FirstOrDefault();
                         //if (thing.Image != null && thing.Image != "default.jpg")
                         //{
                         //    System.IO.File.Delete(_appEnvironment.WebRootPath + @"\Image\" + thing.Image);
                         //}
 
-                        //_context.Things.Find(id).Image = fileName;
+                        _context.Photos.Add(p);
                         _context.SaveChanges();
                     }
                 }

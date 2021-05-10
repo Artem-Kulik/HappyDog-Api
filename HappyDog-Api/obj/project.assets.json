@@ -8984,24 +8984,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dev.itstep\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Артем\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Arti_VVl\\HappyDog-Api\\HappyDog-Api\\HappyDog-Api.csproj",
+      "projectUniqueName": "D:\\The way\\Шаг дз\\Семестр 4\\HappyDog\\HappyDog-Api\\HappyDog-Api\\HappyDog-Api.csproj",
       "projectName": "HappyDog-Api",
-      "projectPath": "D:\\Arti_VVl\\HappyDog-Api\\HappyDog-Api\\HappyDog-Api.csproj",
-      "packagesPath": "C:\\Users\\dev.itstep\\.nuget\\packages\\",
-      "outputPath": "D:\\Arti_VVl\\HappyDog-Api\\HappyDog-Api\\obj\\",
+      "projectPath": "D:\\The way\\Шаг дз\\Семестр 4\\HappyDog\\HappyDog-Api\\HappyDog-Api\\HappyDog-Api.csproj",
+      "packagesPath": "C:\\Users\\Артем\\.nuget\\packages\\",
+      "outputPath": "D:\\The way\\Шаг дз\\Семестр 4\\HappyDog\\HappyDog-Api\\HappyDog-Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\dev.itstep\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Артем\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -9012,7 +9013,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -9024,7 +9024,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
@@ -9083,7 +9082,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

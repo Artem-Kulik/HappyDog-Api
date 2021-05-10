@@ -11,25 +11,25 @@ namespace HappyDog_Api.Models.Configuration.Initializers
     {
         public async Task Init(ApplicationContext context)
         {
-            DogSize[] sizes = new DogSize[] {
-                new DogSize(){ 
-                Size = "X-small"                
+            DogType[] sizes = new DogType[] {
+                new DogType(){ 
+                Type = "Watchdog"                
                 },
-                 new DogSize(){
-                Size = "Mini"
+                 new DogType(){
+                Type = "Hunting"
                 },
-                new DogSize(){
-                Size = "Medium"
-                }, 
-                new DogSize(){
-                Size = "Maxi"
+                new DogType(){
+                Type = "Smart"
                 },
-                new DogSize(){
-                Size = "Giant"
+                new DogType(){
+                Type = "Kind"
+                },
+                new DogType(){
+                Type = "Expensive"
                 }
             };
 
-            await context.Set<DogSize>().AddRangeAsync(sizes);
+            await context.Set<DogType>().AddRangeAsync(sizes);
         }
     }
 }

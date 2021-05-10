@@ -71,14 +71,15 @@ namespace HappyDog_Api.Controllers
             if (result.res == true) {
                 WonInARow++;
                 _context.UserAdditionalInfo.Find(result.id).Coins += Prise;
-                Prise *= 2;
+                if(Prise <= 360)Prise *= 2;
             }
             else
             {
                 WonInARow = 1;
                 var c = _context.UserAdditionalInfo.Find(result.id).Coins;
-                if (c - (Prise / 2) >= 0) _context.UserAdditionalInfo.Find(result.id).Coins -= (Prise / 2);
+                if (c - Prise >= 0) _context.UserAdditionalInfo.Find(result.id).Coins -= Prise;
                 else c = 0;
+
                 Prise = 10;
             }
             _context.SaveChanges();

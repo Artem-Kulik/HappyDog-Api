@@ -9,7 +9,7 @@ namespace HappyDog_Api.Models.Entities
     {
         public int Id { get; set; }
         public string Path { get; set; }
-        public int DogForSaleId { get; set; }
+        public int? DogForSaleId { get; set; }
 
         public virtual DogForSale DogForSale { get; set; }
     }

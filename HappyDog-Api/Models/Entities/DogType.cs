@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace HappyDog_Api.Models.Entities
 {
-    public class DogSize
+    public class DogType
     {
         public int Id { get; set; }
-        public string Size { get; set; }
+        public string Type { get; set; }
 
         public virtual IEnumerable<DogInfo> DogInfos { get; set; }
     }

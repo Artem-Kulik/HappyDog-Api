@@ -26,9 +26,10 @@ namespace HappyDog_Api.Models.Entities
         public virtual DbSet<BreedPhoto> BreedPhotos { get; set; }
         public virtual DbSet<DogForSale> DogForSales { get; set; }
         public virtual DbSet<DogInfo> DogInfos { get; set; }
-        public virtual DbSet<DogSize> DogSizes { get; set; }
+        public virtual DbSet<DogType> DogTypes { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<Thesis> Theses { get; set; }
         public virtual DbSet<BreedGame> BreedGames { get; set; }
+        public virtual DbSet<Request> Requests { get; set; }
     }
 }

@@ -31,8 +31,13 @@ namespace HappyDog_Api.Models.Configuration
 
             this.AddConfig(new DogSizeInitializer());
             this.AddConfig(new BreedGameInitializer());
-        }
+            this.AddConfig(new DogInfoInitializer());
+            this.AddConfig(new ThesisInitializer());
 
+            this.AddConfig(new DogForSaleInitializer());
+            this.AddConfig(new PhotoInitializer());
+        }
+         
         public void AddConfig(ITypeInitializer typeInitializer)
         {
             typeInitializers.Add(typeInitializer);
@@ -59,7 +64,6 @@ namespace HappyDog_Api.Models.Configuration
             await roleManager.CreateAsync(new IdentityRole { Name = "Admin" });
             await roleManager.CreateAsync(new IdentityRole { Name = "User" });
             await roleManager.CreateAsync(new IdentityRole { Name = "Guest" });
-
 
             await userManager.CreateAsync(new User
             {

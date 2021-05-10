@@ -87,12 +87,24 @@ namespace HappyDog_Api.Controllers
 
 
                 var id = _context.Users.Where(el => el.Email == model.Email).FirstOrDefault().Id;
-                return new ResultLoginDto
+
+                try
                 {
-                    IsSuccessful = true,
-                    Token = _jwtTokenService.CreateToken(user),
-                    Message = id
-                };
+                    string t = _jwtTokenService.CreateToken(user);
+                    return new ResultLoginDto
+                    {
+                        IsSuccessful = true,
+                        Token = t,
+                        Message = id
+                    };
+                }
+                catch (Exception ex) {
+                    return new ResultLoginDto
+                    {
+                        IsSuccessful = true,
+                        Message = "Admin"
+                    };
+                }
             }
             catch (Exception ex)
             {
