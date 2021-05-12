@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -78,18 +79,14 @@ namespace HappyDog_Api.Controllers
         [HttpPost("sendRequest")]
         public ResultDto sendRequest(DogForSaleDto d)
         {
-            Request r = new Request()
-            {
-                Age = d.Age,
-                Breed = d.Breed,
-                BreedType = d.DogType,
-                Info = d.Info,
-                MainPhoto = d.MainPhoto,
-                Price = d.Price                
-            };
+            var r = _context.Requests.Find(d.Id);
 
-            _context.Requests.Add(r);
-
+            r.Info = d.Info;
+            r.Breed = d.Breed;
+            r.BreedType = d.DogType;
+            r.Age = d.Age;
+            r.Price = d.Price;
+            
             _context.SaveChanges();
             return new ResultDto()
             {

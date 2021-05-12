@@ -78,7 +78,7 @@ namespace HappyDog_Api.Controllers
                 WonInARow = 1;
                 var c = _context.UserAdditionalInfo.Find(result.id).Coins;
                 if (c - Prise >= 0) _context.UserAdditionalInfo.Find(result.id).Coins -= Prise;
-                else c = 0;
+                else _context.UserAdditionalInfo.Find(result.id).Coins = 0;
 
                 Prise = 10;
             }

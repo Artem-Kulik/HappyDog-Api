@@ -230,5 +230,30 @@ namespace HappyDog_Api.Controllers
             };
 
         }
+
+        [HttpPost("addSaleDog")]
+        public ResultDto addSaleDog(DogForSaleDto x)
+        {
+            DogForSale d = new DogForSale
+            {
+                Name = "",
+                DogTypeId = _context.DogTypes.Where(y => y.Type == x.DogType).FirstOrDefault().Id,
+                Breed = x.Breed,
+                Age = x.Age,
+                Info = x.Info,
+                Price = x.Price,
+                MyDescription = ""
+            };
+
+            _context.DogForSales.Add(d);
+            _context.SaveChanges();
+
+            return new ResultDto
+            {
+                IsSuccessful = true,
+                Message = ""
+            };
+
+        }
     }
 }

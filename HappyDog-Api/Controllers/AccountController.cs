@@ -42,6 +42,19 @@ namespace HappyDog_Api.Controllers
         [HttpPost("register")]
         public async Task<ResultDto> Register([FromBody] RegisterDto model)
         {
+            if (model.Name == null || model.Name == "") {
+                return new ResultDto
+                {
+                    IsSuccessful = false
+                };
+            }
+            if (model.Email == null || model.Email == "")
+            {
+                return new ResultDto
+                {
+                    IsSuccessful = false
+                };
+            }
             User user = new User()
             {
                 Email = model.Email,

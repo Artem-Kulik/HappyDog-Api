@@ -123,14 +123,12 @@ namespace HappyDog_Api.Controllers
         {
             var p = _context.DogForSales.Find(x.Id);
 
-            p.MainPhoto = x.MainPhoto;
-
             p.Age = x.Age;
             p.Breed = x.Breed;
             p.Price = x.Price;
             p.Info = x.Info;
 
-            // p.DogTypeId = _context.DogTypes.Where(y => y.Type == x.DogType);
+            p.DogTypeId = _context.DogTypes.Where(y => y.Type == x.DogType).FirstOrDefault().Id;
 
             _context.SaveChanges();
 
@@ -209,6 +207,7 @@ namespace HappyDog_Api.Controllers
         {
             var requests = _context.Requests.Select(d => new RequestDto
             {
+                Id = d.Id,
                 Age = d.Age,
                 Breed = d.Breed,
                 BreedType = d.BreedType,
@@ -240,7 +239,14 @@ namespace HappyDog_Api.Controllers
                     DogTypeId = _context.DogTypes.Where(y => y.Type == x.BreedType).FirstOrDefault().Id
                 };
                 _context.DogForSales.Add(d);
-                _context.Requests.Remove(x);
+                _context.SaveChanges();
+
+                Photo p = new Photo
+                {
+                    Path = d.MainPhoto,
+                    DogForSaleId = d.Id
+                };
+                _context.Photos.Add(p);
             }
             else {
                 _context.Requests.Remove(_context.Requests.Find(Convert.ToInt32(res.id)));
@@ -252,6 +258,7 @@ namespace HappyDog_Api.Controllers
                 IsSuccessful = true              
             };
         }
+
 
     }
 }
