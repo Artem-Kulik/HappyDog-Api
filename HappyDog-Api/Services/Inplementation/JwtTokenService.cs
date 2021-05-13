@@ -29,7 +29,7 @@ namespace HappyDog_Api.Services.Inplementation
         public string CreateToken(User user)
         {
             var roles = _userManager.GetRolesAsync(user).Result;
-            var fullName = _context.UserAdditionalInfo.FirstOrDefault(t => t.Id == user.Id).Name;
+            var fullName = _context.Users.FirstOrDefault(t => t.Id == user.Id).UserName;
             var claims = new List<Claim>()
             {
                 //new Claim(JwtRegisteredClaimNames.Sub, user.Id)

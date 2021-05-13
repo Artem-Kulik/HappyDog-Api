@@ -349,9 +349,7 @@ namespace HappyDog_Api.Controllers
             }
 
         }
-
-        
-
+             
         [HttpPost("UploadSaleMainPhoto/{id}")]
         public ResultDto UploadSaleMainPhoto([FromRoute] string id, [FromForm(Name = "file")] IFormFile uploadedImage)
         {
@@ -393,6 +391,13 @@ namespace HappyDog_Api.Controllers
                         //{
                         //    System.IO.File.Delete(_appEnvironment.WebRootPath + @"\Image\" + thing.Image);
                         //}
+                        _context.SaveChanges();
+
+                        Photo p = new Photo
+                        {
+                            Path = s.MainPhoto,
+                            DogForSaleId = s.Id
+                        };
 
                         _context.SaveChanges();
                     }

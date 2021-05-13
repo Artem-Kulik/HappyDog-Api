@@ -61,6 +61,208 @@ namespace HappyDog_Api.Controllers
 
         }
 
+        [HttpGet]
+        [Route("getBreedsSBBreed")]
+        public ResultDto getBreedsSBBreed()
+        {
+            var breeds = _context.DogInfos.Select(x => new DogInfoDto
+            {
+                Id = x.Id,
+                MainPhoto = x.MainPhoto,
+                MainDescription = x.MainDescription,
+
+                BigPhoto = x.BigPhoto,
+                BigDescription = x.BigDescription,
+
+                Breed = x.Breed,
+                Country = x.Country,
+                Weight = x.Weight,
+                Height = x.Height,
+                LifeExpectancy = x.LifeExpectancy,
+
+                Aggressiveness = x.Aggressiveness,
+                Activity = x.Activity,
+                Health = x.Health,
+                Intelligence = x.Intelligence,
+                Training = x.Training,
+                MaintenanceCost = x.MaintenanceCost,
+                Molting = x.Molting,
+                SecurityQualities = x.SecurityQualities,
+                Price = x.Price,
+                Noise = x.Noise,
+
+                DogType = _context.DogTypes.Where(y => y.Id == x.DogTypeId).FirstOrDefault().Type
+            }).ToList();
+
+            return new CollectionResultDto<DogInfoDto>()
+            {
+                IsSuccessful = true,
+                Data = breeds.OrderBy(x => x.Breed).ToList()
+            };
+
+        }
+        [HttpGet]
+        [Route("getBreedsSBType")]
+        public ResultDto getBreedsSBType()
+        {
+            var breeds = _context.DogInfos.Select(x => new DogInfoDto
+            {
+                Id = x.Id,
+                MainPhoto = x.MainPhoto,
+                MainDescription = x.MainDescription,
+
+                BigPhoto = x.BigPhoto,
+                BigDescription = x.BigDescription,
+
+                Breed = x.Breed,
+                Country = x.Country,
+                Weight = x.Weight,
+                Height = x.Height,
+                LifeExpectancy = x.LifeExpectancy,
+
+                Aggressiveness = x.Aggressiveness,
+                Activity = x.Activity,
+                Health = x.Health,
+                Intelligence = x.Intelligence,
+                Training = x.Training,
+                MaintenanceCost = x.MaintenanceCost,
+                Molting = x.Molting,
+                SecurityQualities = x.SecurityQualities,
+                Price = x.Price,
+                Noise = x.Noise,
+
+                DogType = _context.DogTypes.Where(y => y.Id == x.DogTypeId).FirstOrDefault().Type
+            }).ToList();
+
+            return new CollectionResultDto<DogInfoDto>()
+            {
+                IsSuccessful = true,
+                Data = breeds.OrderBy(x => x.DogType).ToList()
+            };
+
+        }
+        [HttpGet]
+        [Route("getBreedsSBHeight")]
+        public ResultDto getBreedsSBHeight()
+        {
+            var breeds = _context.DogInfos.Select(x => new DogInfoDto
+            {
+                Id = x.Id,
+                MainPhoto = x.MainPhoto,
+                MainDescription = x.MainDescription,
+
+                BigPhoto = x.BigPhoto,
+                BigDescription = x.BigDescription,
+
+                Breed = x.Breed,
+                Country = x.Country,
+                Weight = x.Weight,
+                Height = x.Height,
+                LifeExpectancy = x.LifeExpectancy,
+
+                Aggressiveness = x.Aggressiveness,
+                Activity = x.Activity,
+                Health = x.Health,
+                Intelligence = x.Intelligence,
+                Training = x.Training,
+                MaintenanceCost = x.MaintenanceCost,
+                Molting = x.Molting,
+                SecurityQualities = x.SecurityQualities,
+                Price = x.Price,
+                Noise = x.Noise,
+
+                DogType = _context.DogTypes.Where(y => y.Id == x.DogTypeId).FirstOrDefault().Type
+            }).ToList();
+
+            return new CollectionResultDto<DogInfoDto>()
+            {
+                IsSuccessful = true,
+                Data = breeds.OrderBy(x => x.Height).ToList()
+            };
+
+        }
+        [HttpGet]
+        [Route("getBreedsSBWeidht")]
+        public ResultDto getBreedsSBWeidht()
+        {
+            var breeds = _context.DogInfos.Select(x => new DogInfoDto
+            {
+                Id = x.Id,
+                MainPhoto = x.MainPhoto,
+                MainDescription = x.MainDescription,
+
+                BigPhoto = x.BigPhoto,
+                BigDescription = x.BigDescription,
+
+                Breed = x.Breed,
+                Country = x.Country,
+                Weight = x.Weight,
+                Height = x.Height,
+                LifeExpectancy = x.LifeExpectancy,
+
+                Aggressiveness = x.Aggressiveness,
+                Activity = x.Activity,
+                Health = x.Health,
+                Intelligence = x.Intelligence,
+                Training = x.Training,
+                MaintenanceCost = x.MaintenanceCost,
+                Molting = x.Molting,
+                SecurityQualities = x.SecurityQualities,
+                Price = x.Price,
+                Noise = x.Noise,
+
+                DogType = _context.DogTypes.Where(y => y.Id == x.DogTypeId).FirstOrDefault().Type
+            }).ToList();
+
+            return new CollectionResultDto<DogInfoDto>()
+            {
+                IsSuccessful = true,
+                Data = breeds.OrderBy(x => x.Weight).ToList()
+            };
+
+        }
+        [HttpGet]
+        [Route("getBreedsSBCountry")]
+        public ResultDto getBreedsSBCountry()
+        {
+            var breeds = _context.DogInfos.Select(x => new DogInfoDto
+            {
+                Id = x.Id,
+                MainPhoto = x.MainPhoto,
+                MainDescription = x.MainDescription,
+
+                BigPhoto = x.BigPhoto,
+                BigDescription = x.BigDescription,
+
+                Breed = x.Breed,
+                Country = x.Country,
+                Weight = x.Weight,
+                Height = x.Height,
+                LifeExpectancy = x.LifeExpectancy,
+
+                Aggressiveness = x.Aggressiveness,
+                Activity = x.Activity,
+                Health = x.Health,
+                Intelligence = x.Intelligence,
+                Training = x.Training,
+                MaintenanceCost = x.MaintenanceCost,
+                Molting = x.Molting,
+                SecurityQualities = x.SecurityQualities,
+                Price = x.Price,
+                Noise = x.Noise,
+
+                DogType = _context.DogTypes.Where(y => y.Id == x.DogTypeId).FirstOrDefault().Type
+            }).ToList();
+
+            return new CollectionResultDto<DogInfoDto>()
+            {
+                IsSuccessful = true,
+                Data = breeds.OrderBy(x => x.Country).ToList()
+            };
+
+        }
+
+
         [HttpGet("{type}")]
         public ResultDto getInfo([FromRoute]string type)
         {

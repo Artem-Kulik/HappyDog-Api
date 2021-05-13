@@ -45,6 +45,130 @@ namespace HappyDog_Api.Controllers
             };
         }
 
+
+        [HttpGet]
+        [Route("getSaleDogsSBBreed")]
+        public ResultDto getSaleDogsSBBreed()
+        {
+            var dogs = _context.DogForSales.Where(x => x.UserAdditionalInfoId == null).Select(x => new DogForSaleDto
+            {
+                Id = x.Id,
+                MainPhoto = x.MainPhoto,
+                Age = x.Age,
+                Breed = x.Breed,
+                MyDescription = x.MyDescription,
+                Info = x.Info,
+                Name = x.Name,
+                Price = x.Price,
+                Photos = _context.Photos.Where(s => s.DogForSaleId == x.Id).Select(r => r.Path).ToList(),
+                DogType = _context.DogTypes.Where(y => y.Id == x.DogTypeId).FirstOrDefault().Type
+            }).ToList();
+
+            return new CollectionResultDto<DogForSaleDto>()
+            {
+                IsSuccessful = true,
+                Data = dogs.OrderBy(x=>x.Breed).ToList()
+            };
+        }
+        [HttpGet]
+        [Route("getSaleDogsSBType")]
+        public ResultDto getSaleDogsSBType()
+        {
+            var dogs = _context.DogForSales.Where(x => x.UserAdditionalInfoId == null).Select(x => new DogForSaleDto
+            {
+                Id = x.Id,
+                MainPhoto = x.MainPhoto,
+                Age = x.Age,
+                Breed = x.Breed,
+                MyDescription = x.MyDescription,
+                Info = x.Info,
+                Name = x.Name,
+                Price = x.Price,
+                Photos = _context.Photos.Where(s => s.DogForSaleId == x.Id).Select(r => r.Path).ToList(),
+                DogType = _context.DogTypes.Where(y => y.Id == x.DogTypeId).FirstOrDefault().Type
+            }).ToList();
+
+            return new CollectionResultDto<DogForSaleDto>()
+            {
+                IsSuccessful = true,
+                Data = dogs.OrderBy(x => x.DogType).ToList()
+            };
+        }
+        [HttpGet]
+        [Route("getSaleDogsSBInfo")]
+        public ResultDto getSaleDogsSBInfo()
+        {
+            var dogs = _context.DogForSales.Where(x => x.UserAdditionalInfoId == null).Select(x => new DogForSaleDto
+            {
+                Id = x.Id,
+                MainPhoto = x.MainPhoto,
+                Age = x.Age,
+                Breed = x.Breed,
+                MyDescription = x.MyDescription,
+                Info = x.Info,
+                Name = x.Name,
+                Price = x.Price,
+                Photos = _context.Photos.Where(s => s.DogForSaleId == x.Id).Select(r => r.Path).ToList(),
+                DogType = _context.DogTypes.Where(y => y.Id == x.DogTypeId).FirstOrDefault().Type
+            }).ToList();
+
+            return new CollectionResultDto<DogForSaleDto>()
+            {
+                IsSuccessful = true,
+                Data = dogs.OrderBy(x => x.Info).ToList()
+            };
+        }
+        [HttpGet]
+        [Route("getSaleDogsSBPrice")]
+        public ResultDto getSaleDogsSBPrice()
+        {
+            var dogs = _context.DogForSales.Where(x => x.UserAdditionalInfoId == null).Select(x => new DogForSaleDto
+            {
+                Id = x.Id,
+                MainPhoto = x.MainPhoto,
+                Age = x.Age,
+                Breed = x.Breed,
+                MyDescription = x.MyDescription,
+                Info = x.Info,
+                Name = x.Name,
+                Price = x.Price,
+                Photos = _context.Photos.Where(s => s.DogForSaleId == x.Id).Select(r => r.Path).ToList(),
+                DogType = _context.DogTypes.Where(y => y.Id == x.DogTypeId).FirstOrDefault().Type
+            }).ToList();
+
+            return new CollectionResultDto<DogForSaleDto>()
+            {
+                IsSuccessful = true,
+                Data = dogs.OrderBy(x => x.Price).ToList()
+            };
+        }
+        [HttpGet]
+        [Route("getSaleDogsSBAge")]
+        public ResultDto getSaleDogsSBAge()
+        {
+            var dogs = _context.DogForSales.Where(x => x.UserAdditionalInfoId == null).Select(x => new DogForSaleDto
+            {
+                Id = x.Id,
+                MainPhoto = x.MainPhoto,
+                Age = x.Age,
+                Breed = x.Breed,
+                MyDescription = x.MyDescription,
+                Info = x.Info,
+                Name = x.Name,
+                Price = x.Price,
+                Photos = _context.Photos.Where(s => s.DogForSaleId == x.Id).Select(r => r.Path).ToList(),
+                DogType = _context.DogTypes.Where(y => y.Id == x.DogTypeId).FirstOrDefault().Type
+            }).ToList();
+
+            return new CollectionResultDto<DogForSaleDto>()
+            {
+                IsSuccessful = true,
+                Data = dogs.OrderBy(x => x.Age).ToList()
+            };
+        }
+
+
+
         [HttpGet("getDogsByBreed/{breed}")]
         public ResultDto getDogsByBreed([FromRoute]string breed)
         {
@@ -247,6 +371,8 @@ namespace HappyDog_Api.Controllers
 
             _context.DogForSales.Add(d);
             _context.SaveChanges();
+
+
 
             return new ResultDto
             {

@@ -38,11 +38,12 @@ namespace HappyDog_Api.Controllers
                 IsSuccessful = true
             };
         }
-        
+
         [HttpPost("register")]
         public async Task<ResultDto> Register([FromBody] RegisterDto model)
         {
-            if (model.Name == null || model.Name == "") {
+            if (model.Name == null || model.Name == "")
+            {
                 return new ResultDto
                 {
                     IsSuccessful = false
@@ -68,16 +69,16 @@ namespace HappyDog_Api.Controllers
                 Id = user.Id,
                 Name = model.Name,
                 Photo = "/Images/default.jpg",
-                Coins = 0,      
+                Coins = 0,
                 City = "City"
             };
 
-            var result = _userManager.AddToRoleAsync(user, "Guest").Result;
+            var result = _userManager.AddToRoleAsync(user, "User").Result;
             await _context.UserAdditionalInfo.AddAsync(ui);
             await _context.SaveChangesAsync();
 
             return new ResultDto
-            { 
+            {
                 IsSuccessful = true
             };
         }
@@ -98,7 +99,6 @@ namespace HappyDog_Api.Controllers
                 var user = await _userManager.FindByEmailAsync(model.Email);
                 await _signInManager.SignInAsync(user, isPersistent: false);
 
-
                 var id = _context.Users.Where(el => el.Email == model.Email).FirstOrDefault().Id;
 
                 try
@@ -111,11 +111,12 @@ namespace HappyDog_Api.Controllers
                         Message = id
                     };
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                     return new ResultLoginDto
                     {
-                        IsSuccessful = true,
-                        Message = "Admin"
+                        IsSuccessful = false,
+                        Message = ex.Message
                     };
                 }
             }

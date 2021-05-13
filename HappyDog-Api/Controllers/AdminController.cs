@@ -108,7 +108,7 @@ namespace HappyDog_Api.Controllers
         [HttpGet("deleteBreed/{breed}")]
         public ResultDto deleteBreed([FromRoute]string breed)
         {
-            _context.DogInfos.Remove(_context.DogInfos.Where(x=>x.Breed == breed).FirstOrDefault());
+            _context.DogInfos.Remove(_context.DogInfos.Where(x => x.Breed == breed).FirstOrDefault());
             _context.SaveChanges();
 
             return new ResultDto
@@ -165,10 +165,18 @@ namespace HappyDog_Api.Controllers
                 Breed = x.Breed,
                 Price = x.Price,
                 Info = x.Info,
-                //  DogTypeId = _context.DogTypes.Where(y => y.Type == x.DogType).FirstOrDefault().Id
+                DogTypeId = _context.DogTypes.Where(y => y.Type == x.DogType).FirstOrDefault().Id
             };
 
             _context.DogForSales.Add(d);
+            _context.SaveChanges();
+
+            Photo p = new Photo
+            {
+                Path = d.MainPhoto,
+                DogForSaleId = d.Id
+            };
+            _context.Photos.Add(p);
             _context.SaveChanges();
 
             return new ResultDto
@@ -185,7 +193,7 @@ namespace HappyDog_Api.Controllers
         {
             var users = _context.UserAdditionalInfo.Select(u => new UserInfoDto
             {
-                PhoneNumber = _context.Users.Where(x=>x.Id == u.Id).FirstOrDefault().PhoneNumber,
+                PhoneNumber = _context.Users.Where(x => x.Id == u.Id).FirstOrDefault().PhoneNumber,
                 Email = _context.Users.Where(x => x.Id == u.Id).FirstOrDefault().Email,
                 Photo = u.Photo,
                 Name = u.Name,
@@ -222,7 +230,7 @@ namespace HappyDog_Api.Controllers
                 Data = requests
             };
         }
-                
+
         [HttpPost("sendRequest")]
         public ResultDto sendRequest(AnswerResultDto res)
         {
@@ -235,9 +243,10 @@ namespace HappyDog_Api.Controllers
                     Age = x.Age,
                     Breed = x.Breed,
                     Price = x.Price,
-                    Info = x.Info + ". Are you ready to accept such a friend into your family?",                    
+                    Info = x.Info + ". Are you ready to accept such a friend into your family?",
                     DogTypeId = _context.DogTypes.Where(y => y.Type == x.BreedType).FirstOrDefault().Id
                 };
+                _context.Requests.Remove(x);
                 _context.DogForSales.Add(d);
                 _context.SaveChanges();
 
@@ -248,17 +257,58 @@ namespace HappyDog_Api.Controllers
                 };
                 _context.Photos.Add(p);
             }
-            else {
+            else
+            {
                 _context.Requests.Remove(_context.Requests.Find(Convert.ToInt32(res.id)));
             }
 
             _context.SaveChanges();
             return new ResultDto
             {
-                IsSuccessful = true              
+                IsSuccessful = true
             };
         }
 
+        [HttpGet("getBreedCount")]
+        public ResultDto getBreedCount()
+        {
+            var breeds = _context.DogInfos;
 
+            CountDto c = new CountDto
+            {
+                w = _context.DogInfos.Where(x=>x.DogTypeId == 1).Count(),
+                h = _context.DogInfos.Where(x => x.DogTypeId == 2).Count(),
+                s = _context.DogInfos.Where(x => x.DogTypeId == 3).Count(),
+                k = _context.DogInfos.Where(x => x.DogTypeId == 4).Count(),
+                e = _context.DogInfos.Where(x => x.DogTypeId == 5).Count(),
+            };
+
+            return new SingleResultDto<CountDto>()
+            {
+                IsSuccessful = true,
+                Data = c
+            };
+        }
+
+        [HttpGet("getSaleDogCount")]
+        public ResultDto getSaleDogCount()
+        {
+            var breeds = _context.DogInfos;
+
+            CountDto c = new CountDto
+            {
+                w = _context.DogForSales.Where(x => x.DogTypeId == 1).Count(),
+                h = _context.DogForSales.Where(x => x.DogTypeId == 2).Count(),
+                s = _context.DogForSales.Where(x => x.DogTypeId == 3).Count(),
+                k = _context.DogForSales.Where(x => x.DogTypeId == 4).Count(),
+                e = _context.DogForSales.Where(x => x.DogTypeId == 5).Count(),
+            };
+
+            return new SingleResultDto<CountDto>()
+            {
+                IsSuccessful = true,
+                Data = c
+            };
+        }
     }
 }
